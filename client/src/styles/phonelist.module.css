@@ -1,0 +1,25 @@
+.phoneListCtn {
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: center;
+    margin-top: 10px;
+    height: 90vh;
+}
+
+p {
+    font-size: 16px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.phoneCtn {
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    background-color: white;
+    margin: 20px;
+}
+
+

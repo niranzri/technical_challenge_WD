@@ -13,7 +13,6 @@ function PhonesContextProvider({children}) {
                 const phonesData = await response.json();
                 setPhones(phonesData);
             }
-
         } catch (error){
             console.log(error);
         }
@@ -21,7 +20,7 @@ function PhonesContextProvider({children}) {
 
 
     return (
-        <PhonesContext.Provider value={{fetchPhones, phones, setPhones}}> {children} </PhonesContext.Provider>
+        <PhonesContext.Provider value={{fetchPhones, phones}}> {children} </PhonesContext.Provider>
     )
 
 }

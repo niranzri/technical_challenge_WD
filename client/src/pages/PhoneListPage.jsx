@@ -1,18 +1,32 @@
 import { useState, useEffect, useContext } from 'react';
-import classes from "../styles/phonelist.module.css";
 import { Link } from 'react-router-dom'
 import { PhonesContext } from '../contexts/PhonesContext'
+import classes from "../styles/phonelist.module.css";
+import { Loader } from '@mantine/core';
 
 function PhoneListPage() {
     const [selectedPhoneId, setSelectedPhoneId] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [buttonsText, setButtonsText] = useState({});
     const { phones, fetchPhones} = useContext(PhonesContext) 
-
+    
     useEffect(() => {
-        fetchPhones()
+        fetchPhones().then(() => {
+            setIsLoading(false); 
+        });
     }, [])
 
+    // initializes each phone's button text to 'See details'.
+    useEffect(() => {
+        const initialButtonsText = phones.reduce((acc, phone) => {
+            acc[phone.id] = 'See details';
+            return acc;
+        }, {});
+        setButtonsText(initialButtonsText);
+    }, [phones]); 
+
     const handlePhoneClick = (phoneId) => {
+        console.log('click!')
         setSelectedPhoneId(phoneId);
         setButtonsText(prevButtonsText => ({
         ...prevButtonsText,
@@ -26,6 +40,12 @@ function PhoneListPage() {
             <Link to='/'>
                 <button type="button" className={classes.backBtn}> Back to homepage </button>
             </Link>
+            { isLoading ? (
+                function Demo() {
+                  return <Loader color="blue" />;
+                }
+                
+            ):(
             <div className={classes.phoneListCtn}>
                 {phones.map(phone => (
                     <div key={phone.id} className={classes.phoneCtn}>
@@ -48,6 +68,7 @@ function PhoneListPage() {
                     </div>
                 ))}
             </div>
+            )}
         </div>
     );
 }

@@ -8,16 +8,3 @@
 }
 
 
-button {
-    width: 100px;
-    padding: 10px;
-    height: auto;
-    background-color: rgb(197, 202, 204);
-    color: black;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: none;
-}
